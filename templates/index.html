@@ -33,8 +33,37 @@
     <title>Prueba-LopezJonathan</title>
   </head>
   <body>
-    
+    <div>
+        <!-- Comenzar alertas -->
+        {% with messages = get_flashed_messages(with_categories=true) %} {% if
+        messages %} {% for category, message in messages %}
+        <script>
+          Swal.fire({
+            title: "{{ category.title() }}!",
+            text: "{{ message }}",
+            icon: "{{ category }}" == "danger" ? "error" : "{{ category }}",
+          });
+        </script>
+        {% endfor %} {% endif %} {% endwith %}
+  
+        <!-- Fin de alertas -->
+      </div>
+    </div>
+    <div class="container">
+      <div id="App" class="row pt-5 mt-5">
+        <!--Create a search input-->
+        <div class="col-md-12 mb-4">
+          <form action="{{url_for('filter_task')}}" class="input-group", method="GET">
+            <input
+              type="text"
+              class="form-control text-center"
+              placeholder="Filter task by priority"
+              name="task_priority"
+            />
+            <input type="submit" value="Filter" class="btn btn-primary" />
+          </form>
+        </div>
 
-    
+
   </body>
 </html>
