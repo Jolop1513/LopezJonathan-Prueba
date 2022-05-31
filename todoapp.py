@@ -89,6 +89,32 @@ def guardar():
         return 'Error 404'
 
 
+@app.route('/borrar_registro/<string:registro_id>')
+def borrar_registro(registro_id):
+    registro.pop(registro_id.index(registro_id))
+    return redirect(url_for('index'))
+
+# Route for filter tassk by priority
+
+
+@app.route('/filter_registro/,', methods=['GET'])
+def filter_registro():
+    if request.method == 'GET':
+        registro_priority = request.args.get('registro_priority')
+        if registro == []:
+            flash('No hay usuarios filtradas', 'error')
+            return redirect(url_for('index'))
+        else:
+            if registro_priority == '':
+                flash('Por favor ingrese un estado', 'error')
+                return redirect(url_for('index'))
+            else:
+                new_registro = []
+                for registro in registro:
+                    if registro['registro_priority'] == registro_priority:
+                        new_registro.append(registro)
+                return render_template('index.html', registro=new_registro)
+
 
 
 # Running the app.

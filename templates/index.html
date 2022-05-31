@@ -50,6 +50,9 @@
       </div>
     </div>
     <div class="container">
+        <div>
+            <center><h1><a class="navbar-brand" style=" font-family: fantasy;" href="#">GESTIÓN DE CIENTES</a><h1></center>
+        </div>
       <div id="App" class="row pt-5 mt-5">
         <!--Create a search input-->
         <div class="col-md-12 mb-4">
@@ -60,7 +63,7 @@
               placeholder="Encontrar un cliente"
               name="registro_priority"
             />
-            <input type="submit" value="Filter" class="btn btn-primary" />
+            <input type="submit" value="Buscar" class="btn btn-primary" />
           </form>
         </div>
 
@@ -89,8 +92,8 @@
                 <div class="form-group p-1">
                   <input
                     type="telephone"
-                    name="registro_email"
-                    placeholder="E-mail address"
+                    name="registro.registro_telephone"
+                    placeholder="Ingrese un número de teléfono"
                     class="form-control text-center"
                   />
                 </div>
@@ -109,7 +112,7 @@
                 <input
                   type="submit"
                   id="btn-add"
-                  value="Add"
+                  value="Agregar"
                   style="width: 100%"
                   class="btn btn-primary btn-block pt-2 mt-3"
                 />
@@ -128,7 +131,6 @@
                       <th scope="col">Nombre</th>
                       <th scope="col">Teléfono</th>
                       <th scope="col">Estado</th>
-                      <th scope="col">Action</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -142,7 +144,7 @@
                       <!--Button for delete a only tasks-->
                       <td>
                         <a
-                          href="/borrar_task/{{registro.registro_id}}"
+                          href="/borrar_registro/{{registro.registro_id}}"
                           class="btn btn-danger"
                           >Eliminar</a
                         >
