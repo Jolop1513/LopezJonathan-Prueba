@@ -117,9 +117,96 @@
               {% endblock %}
             </div>
           </div>
+          <div id="table" class="col-md-8 mt-2">
+            <div class="card text-center mr-5">
+              <div class="card-body">
+                <table class="table">
+                  <thead>
+                    <tr class="bg-light">
+                      <!--Rows to represent the description of the fields-->
+                      <th scope="col">ID del Cliente</th>
+                      <th scope="col">Nombre</th>
+                      <th scope="col">Teléfono</th>
+                      <th scope="col">Estado</th>
+                      <th scope="col">Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <!--Array of tasks-->
+                    {% for registro in registro %}
+                    <tr class="text-bg-secondary">
+                      <td>{{registro.registro_id}}</td>
+                      <td>{{registro.registro_name}}</td>
+                      <td>{{registro.registro_telephone}}</td>
+                      <td>{{registro.registro_priority}}</td>
+                      <!--Button for delete a only tasks-->
+                      <td>
+                        <a
+                          href="/borrar_task/{{registro.registro_id}}"
+                          class="btn btn-danger"
+                          >Eliminar</a
+                        >
+                      </td>
+                    </tr>
+                    {% endfor %}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="container">
+        <div class="row pt-3">
+          <div class="col-md-4">
+            <div class="card">
+              <div class="card-header">
+                <h4 class="text-center">Eliminar</h4>
+              </div>
+              <!--Form with action for delete all tasks from array-->
+              <form
+                class="card-body"
+                method="POST"
+                action="{{url_for('borrar')}}"
+              >
+                <button
+                  type="submit"
+                  class="btn btn-danger mb-2"
+                  style="width: 100%"
+                >
+                  Eliminar todos los clientes
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="container">
+        <div class="row pt-3">
+          <div class="col-md-4">
+            <div class="card">
+              <div class="card-header">
+                <h4 class="text-center">Guardar Cliente</h4>
+              </div>
+              <!--Form with action for save tasks in json file-->
+              <form
+                class="card-body"
+                method="POST"
+                action="{{url_for('guardar')}}"
+              >
+                <button
+                  type="submit"
+                  class="btn btn-warning mb-2"
+                  style="width: 100%"
+                >
+                  Guardar todos los clientes
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
 
 
-
-          
   </body>
 </html>
