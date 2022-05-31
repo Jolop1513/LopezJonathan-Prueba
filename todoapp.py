@@ -48,7 +48,45 @@ def enviar():
     else:
         # Return 404 error
         return 'Error 404'
+"""
+Si el método de solicitud es POST y la lista está vacía, muestra un mensaje de advertencia; de lo contrario, borre el
+lista y mostrar un mensaje de éxito
+:return: el archivo index.html.
+"""
 
+
+@app.route('/borrar', methods=['POST'])
+def borrar():
+    if request.method == 'POST':
+        if registro == []:
+            flash('No hay clientes por eliminar', 'Error')
+            return redirect(url_for('index'))
+        else:
+            registro.clear()
+            flash('Cliente eliminado', 'éxitoso')
+            return redirect(url_for('index'))
+    else:
+        # Return 404 error
+        return 'Error 404'
+
+@app.route('/guardar', methods=['POST'])
+def guardar():
+    if request.method == 'POST':
+        if registro == []:
+            flash('No hay clientes guardados', 'Error')
+            return redirect(url_for('index'))
+        else:
+
+            if os.path.exists('static/registro.json'):
+                with open('static/registro.json', 'w') as file:
+                    json.dump(registro, file)
+                    flash('Cliente guardado', 'exitoso')
+                    return redirect(url_for('index'))
+            else:
+                flash('Debe crear registro.json file', 'errror')
+                return redirect(url_for('index'))
+    else:
+        return 'Error 404'
 
 
 
