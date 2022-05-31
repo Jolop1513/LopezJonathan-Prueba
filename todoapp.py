@@ -5,8 +5,8 @@ app = Flask(__name__, template_folder='templates')
 
 app.secret_key = 'mysecretkey'
 
-# Array for save tasks
-tasks = []
+# Array para guardar a los clientes
+registro = []
 
 """
 Representa la plantilla index.html, pasando la variable de tareas
@@ -15,7 +15,40 @@ Representa la plantilla index.html, pasando la variable de tareas
 
 @app.route('/')
 def index():
-    return render_template('index.html', tasks=tasks)
+    return render_template('index.html', registro=registro)
+"""
+    Si el método de solicitud es POST, obtenga registro_name, registro_telefono y registro_estado del cliente,
+    y si alguno de ellos está vacío, muestra un mensaje de error y redirige a la página de índice, de lo contrario
+    mostrar un mensaje de éxito y redirigir a la página de índice
+    :return: el archivo index.html.
+"""
+
+@app.route('/enviar', methods=['POST'])
+def enviar():
+    # El método de solicitud de verificación es POST
+    if request.method == 'POST':
+        registro_name = request.form['registro_name']
+        registro_telephone = request.form['registro_telephone']
+        registro_priority = request.form['registro_priority']
+        if registro_name == '' or registro_telephone == '':
+            # Mensaje de error
+            flash('Por favor ingrese todos los campos', 'peligro')
+            # Redirigir a la página de índice
+            return redirect(url_for('index'))
+        else:
+            # Create a id for the task
+            registro_id = len(registro) + 1
+            # Create a new task
+            registro.append({'registro_id': registro_id, 'registro_name': registro_name,
+                         'registro_telephone': registro_telephone, 'registro_priority': registro_priority})
+            # Flash success message
+            flash('Nuevo cliente agregado', 'éxito')
+            # Redirigir a la página de índice
+            return redirect(url_for('index'))
+    else:
+        # Return 404 error
+        return 'Error 404'
+
 
 
 
