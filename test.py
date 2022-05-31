@@ -18,6 +18,6 @@ class TesttodoApp(unittest.TestCase):
 
     # Test \enviar route
     def test_enviar(self):
-        result = self.app.post('/enviar', data=dict(task_id='1',
-                               registro_name='Jonathan Lopez', registro_telephone='0980137673', task_priority='Normal'))
+        result = self.app.post('/enviar', data=dict(registro_id='1',
+                               registro_name='Jonathan Lopez', registro_telephone='0980137673', registro_priority='Normal'))
         self.assertEqual(result.status_code, 302)
