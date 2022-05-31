@@ -36,12 +36,12 @@ def enviar():
             # Redirigir a la página de índice
             return redirect(url_for('index'))
         else:
-            # Create a id for the task
+      
             registro_id = len(registro) + 1
-            # Create a new task
+
             registro.append({'registro_id': registro_id, 'registro_name': registro_name,
                          'registro_telephone': registro_telephone, 'registro_priority': registro_priority})
-            # Flash success message
+            # Mensaje de éxito de Flask
             flash('Nuevo cliente agregado', 'éxito')
             # Redirigir a la página de índice
             return redirect(url_for('index'))

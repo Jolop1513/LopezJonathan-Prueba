@@ -53,12 +53,12 @@
       <div id="App" class="row pt-5 mt-5">
         <!--Create a search input-->
         <div class="col-md-12 mb-4">
-          <form action="{{url_for('filter_task')}}" class="input-group", method="GET">
+          <form action="{{url_for('filter_registro')}}" class="input-group", method="GET">
             <input
               type="text"
               class="form-control text-center"
-              placeholder="Filter task by priority"
-              name="task_priority"
+              placeholder="Encontrar un cliente"
+              name="registro_priority"
             />
             <input type="submit" value="Filter" class="btn btn-primary" />
           </form>
@@ -70,5 +70,56 @@
                 <h4>REGISTRAR CLIENTE</h4>
               </div>
 
+              {% block content %}
+              <!--Formulario con acción para guardar el cliente en matriz-->
+              <form
+                class="card-body"
+                method="POST"
+                action="{{url_for('enviar')}}"
+              >
+                <div class="form-group p-1">
+                  <!--Campo de texto para ingresar el nombre del cliente-->
+                  <input
+                    type="text"
+                    name="registro_name"
+                    placeholder="Nombre del Cliente"
+                    class="form-control text-center"
+                  />
+                </div>
+                <div class="form-group p-1">
+                  <input
+                    type="telephone"
+                    name="registro_email"
+                    placeholder="E-mail address"
+                    class="form-control text-center"
+                  />
+                </div>
+                <div class="form-group p-1">
+                  <!--Opciones para seleccionar prioridad de clientes-->
+                  <select
+                    name="registro_priority"
+                    id=""
+                    class="form-control text-center"
+                  >
+                    <option value="1" class="text-bg-warning">Normal</option>
+                    <option value="2" class="text-bg-success">Caso</option>
+                    <option value="3" class="text-bg-danger">Cercano</option>
+                  </select>
+                </div>
+                <input
+                  type="submit"
+                  id="btn-add"
+                  value="Add"
+                  style="width: 100%"
+                  class="btn btn-primary btn-block pt-2 mt-3"
+                />
+              </form>
+              {% endblock %}
+            </div>
+          </div>
+
+
+
+          
   </body>
 </html>
